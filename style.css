@@ -1,1 +1,13 @@
-
+/* || Generals */
+body{
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+    border: 0;
+    color: coral;
+    background-color: black;
+    
+}
+/* || Container*/
+.container{
+    background-color: brown;
+}
