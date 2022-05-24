@@ -44,16 +44,24 @@ body{
 
 /* || left container*/
 .container .left{
-    width: 200px;
-    height: 500px;
+    max-width: 220px;
+    height: 520px;
+    padding: 5px;
     background-color: rgb(255, 140, 0);
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    box-sizing: border-box;
+    
 }
 
 /* || sketchpad */
 .sketchpad{
     width: 500px;
     height: 500px;
-    background-color:bisque;
+    background-color:rgb(255, 228, 196);
 
 }
 
@@ -93,4 +101,28 @@ body{
     cursor: pointer;
   }
 
-  
+  /* || Button content*/
+  .button-content{
+      display: flex;
+
+      
+  }
+  /* || Color Display*/
+  #color-display{
+      display: flex;
+      align-items: center;
+  }
+
+  /* || Clear button*/
+  #clear-box{
+      border-radius: 5px;
+      background-color: inherit;
+      color: #ffffff;
+      font-size: 24px;
+
+  }
+  #clear-box:hover{
+    background-color: #04AA6D;
+
+    
+}
