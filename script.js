@@ -104,7 +104,7 @@ function updateColor(){
 
 createGrid();
 
-console.log(rainbowMode.checked)
+
 
 /* Display values of the sliders */
 sizeSliderCounter.textContent=getValue(sizeSlider);
