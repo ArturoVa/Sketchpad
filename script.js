@@ -1,16 +1,21 @@
 const divSketchpad = document.getElementById('sketchpad');
+const leftContainer = document.getElementById('left-container');
 const sizeSlider = document.getElementById('box-size');
 const redSlider = document.getElementById('red');
 const greenSlider = document.getElementById('green');
 const blueSlider = document.getElementById('blue');
+const rainbowMode = document.getElementById('checkbox-1');
+const eraseMode = document.getElementById('checkbox-2');
+const clearButton = document.getElementById('clear-box');
+const colorDisplayText = document.getElementById('color-display')
 
 const sliderList = document.querySelectorAll('.button-content');
+/**Append data set */
 for(let i =0; i<sliderList.length; i++){
     const counterDiv= document.createElement('div');    
     counterDiv.dataset.value =  i;         
     sliderList[i].appendChild(counterDiv);   
 }
-
 
 const sizeSliderContainer = document.querySelectorAll('.button-content')[0];
 const redSliderContainer = document.querySelectorAll('.button-content')[1];
@@ -21,9 +26,6 @@ const sizeSliderCounter = document.querySelector('[data-value="0"]');
 const redSliderCounter = document.querySelector('[data-value="1"]');
 const greenSliderCounter = document.querySelector('[data-value="2"]');
 const blueSliderCounter = document.querySelector('[data-value="3"]');
-
-
-
 
 //-------------
 /* Create the grid*/
@@ -66,6 +68,7 @@ function paint(e, color='black'){
 function getValue(input){
     return input.value;
 }
+
 function eraseGrid(){
     divSketchpad.innerHTML= "";
 }
@@ -74,9 +77,11 @@ function resizeGrid(newValue){
     eraseGrid();
     createGrid(newValue);
 }
+
+
 function sliderValues(sliderElement,sliderElementCounter, maxValue){
     if(getValue(sliderElement)>maxValue){
-        sliderElement=maxValue;
+        sliderElement=maxValue; // prevents manipulating hmtl file from adding more than the admited value
         sliderElementCounter.textContent=getValue(sliderElement);
     }
     else if (getValue(sliderElement)<0){
@@ -88,17 +93,30 @@ function sliderValues(sliderElement,sliderElementCounter, maxValue){
     }
 }
 
+function updateColor(){
+    rgb = `rgb(${getValue(redSlider)},${getValue(greenSlider)},${getValue(blueSlider)})`;
+    colorDisplay.style.cssText = 'background-color:'+rgb+'; height:30px; width:30px; border:2px solid white; margin-left:5%;';
+}
+
 
 
 //------------- 
 
 createGrid();
 
+console.log(rainbowMode.checked)
+
 /* Display values of the sliders */
 sizeSliderCounter.textContent=getValue(sizeSlider);
 redSliderCounter.textContent=getValue(redSlider);
 greenSliderCounter.textContent=getValue(greenSlider);
 blueSliderCounter.textContent=getValue(blueSlider);
+let rgb = `rgb(${getValue(redSlider)},${getValue(greenSlider)},${getValue(blueSlider)})`;
+const colorDisplay = document.createElement('div');
+colorDisplay.style.cssText = 'background-color:'+rgb+'; height:30px; width:30px; border:2px solid white; margin-left:5%;';
+colorDisplayText.appendChild(colorDisplay);
+
+
 
 /* Update values */
 sizeSliderContainer.addEventListener('click',()=>{
@@ -112,22 +130,39 @@ sizeSliderContainer.addEventListener('click',()=>{
 
 redSliderContainer.addEventListener('click',()=>{
     sliderValues(redSlider,redSliderCounter,255);
+    updateColor();
 });
 
 greenSliderContainer.addEventListener('click',()=>{
     sliderValues(greenSlider,greenSliderCounter,255);
+    updateColor();
 });
 
 blueSliderContainer.addEventListener('click',()=>{
     sliderValues(blueSlider,blueSliderCounter,255);
+    updateColor();
 });
-
 
 /** First check if clicked, if true, then when moving the pointer it will paint the current event target */
 divSketchpad.addEventListener('mousedown',(e)=>{ //this EventListener triggers when clicked
     if(e.buttons){ // 1 when clicked, 0 if not
         divSketchpad.addEventListener('mouseover',(e)=>{ // add other event listener that triggers when moving the mousepointer
-            paint(e,`rgb(${getValue(redSlider)},${getValue(greenSlider)},${getValue(blueSlider)})`); 
+            if(rainbowMode.checked && eraseMode.checked){ // if both rainbow and erase are checked returns to false
+                alert("No, don't do that, you are not funny.")
+                rainbowMode.checked = false;
+                eraseMode.checked = false;
+            }
+            else if(rainbowMode.checked){
+                paint(e,randomColor());
+            }
+            else if(eraseMode.checked){
+                paint(e, 'rgb(255, 228, 196)')
+            }
+            else{
+                paint(e,`rgb(${getValue(redSlider)},${getValue(greenSlider)},${getValue(blueSlider)})`); 
+            }
         })
     }
 })
+
+clearButton.addEventListener('click', ()=> resizeGrid(getValue(sizeSlider)))
