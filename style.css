@@ -3,7 +3,7 @@ body{
     
     /*Colors*/
     
-    background-color: rgb(89, 113, 126);
+    background-color: rgb(79, 0, 80);
     /*Dimensions and layout*/
     height: 100vh;
     width: 100vw;
@@ -26,6 +26,16 @@ body{
     -webkit-text-stroke: 2px white;
 
 }
+/* || Box*/
+.box{
+    height: 100%;
+    width: 75%;
+    background-color: rgb(89, 113, 126);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
 
 /* || Container*/
 .container{
@@ -39,13 +49,13 @@ body{
 /* || both container*/
 .left, .sketchpad{
     border-radius: 10px;
-    border: 10px solid red;
+    border: 10px solid rgb(149, 0, 0);
 }
 
 /* || left container*/
 .container .left{
     max-width: 220px;
-    height: 520px;
+    height: 75%;
     padding: 5px;
     background-color: rgb(255, 140, 0);
     display: flex;
@@ -59,9 +69,10 @@ body{
 
 /* || sketchpad */
 .sketchpad{
-    width: 500px;
-    height: 500px;
+    aspect-ratio: 1/1;
+    height: 75%;
     background-color:rgb(255, 228, 196);
+    box-sizing: border-box;
 
 }
 
@@ -122,10 +133,18 @@ body{
       background-color: inherit;
       color: #ffffff;
       font-size: 24px;
+      margin: 10px 0;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      box-sizing: border-box;
+      border: 1px;
 
   }
   #clear-box:hover{
-    background-color: #04AA6D;
+    background-color: #3ca07c;
+    color: #ffffff;
+    
+    box-sizing: border-box;
+
 
     
-}
+ }
