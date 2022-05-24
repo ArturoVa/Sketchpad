@@ -1,4 +1,8 @@
-const divSketchpad = document.getElementById('sketchpad')
+const divSketchpad = document.getElementById('sketchpad');
+const sizeSlider = document.getElementById('box-size');
+const redSlider = document.getElementById('red');
+const blueSlider = document.getElementById('blue');
+const greenSlider = document.getElementById('green');
 
 /* Create the grid*/
 function createGrid(size=16){
@@ -17,31 +21,34 @@ function createGrid(size=16){
 }
 
 
+/** Random color generator */
+function randomColor(){
+    let r = Math.floor(Math.random()*256);
+    let g = Math.floor(Math.random()*256);
+    let b = Math.floor(Math.random()*256);
+    return `rgb(${r},${g},${b})`
+}
+
 /* Painting function */
-function paint(e){
+function paint(e, color='black'){
     /*Event e is triggered when mouse is clicked */
     if(e.buttons){ //here e.buttons throws 1 when primary button (left-click) is triggered and 0 when not pressed
         if(e.target.dataset.type === 'grid-element'){ //Check if the data-type of the clicked element is a grid-element 
 
-            e.target.style.backgroundColor = 'black'; // changes bg color of selected element to black when true
+            e.target.style.backgroundColor = color; // changes bg color of selected element to black when true
 
         }
     }
 }
 
 
-
 createGrid(); 
+
 /** First check if clicked, if true, then when moving the pointer it will paint the current event target */
 divSketchpad.addEventListener('mousedown',(e)=>{ //this EventListener triggers when clicked
     if(e.buttons){ // 1 when clicked, 0 if not
         divSketchpad.addEventListener('mouseover',(e)=>{ // add other event listener that triggers when moving the mousepointer
-            paint(e); 
+            paint(e,randomColor()); 
         })
     }
 })
-
-
-
-
-
