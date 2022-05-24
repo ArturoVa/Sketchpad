@@ -42,4 +42,23 @@ body{
     width: 500px;
     height: 500px;
     background-color:bisque;
+    
+}
+
+/* || Grid element*/
+[data-type="grid-element"]{
+    box-sizing: border-box;
+    -webkit-user-drag: none;
+    border:1px solid  rgb(92, 92, 92) ;
+}
+
+/* || footer*/
+.footer{
+    background-color:burlywood;
+    text-align: center;
+}
+
+/* || Class when colored*/
+.colored{
+    background-color: red;
 }
