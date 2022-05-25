@@ -118,8 +118,8 @@ colorDisplayText.appendChild(colorDisplay);
 
 
 
-/* Update values */
-sizeSliderContainer.addEventListener('click',()=>{
+/* Update values oninput */
+sizeSliderContainer.addEventListener('input',()=>{
     if(getValue(sizeSlider)>100){
         sizeSlider=100;
         resizeGrid(getValue(sizeSlider));
@@ -128,17 +128,17 @@ sizeSliderContainer.addEventListener('click',()=>{
     sliderValues(sizeSlider,sizeSliderCounter,100);
 });
 
-redSliderContainer.addEventListener('click',()=>{
+redSliderContainer.addEventListener('input',()=>{
     sliderValues(redSlider,redSliderCounter,255);
     updateColor();
 });
 
-greenSliderContainer.addEventListener('click',()=>{
+greenSliderContainer.addEventListener('input',()=>{
     sliderValues(greenSlider,greenSliderCounter,255);
     updateColor();
 });
 
-blueSliderContainer.addEventListener('click',()=>{
+blueSliderContainer.addEventListener('input',()=>{
     sliderValues(blueSlider,blueSliderCounter,255);
     updateColor();
 });
