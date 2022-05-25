@@ -148,7 +148,7 @@ divSketchpad.addEventListener('mousedown',(e)=>{ //this EventListener triggers w
     if(e.buttons){ // 1 when clicked, 0 if not
         divSketchpad.addEventListener('mouseover',(e)=>{ // add other event listener that triggers when moving the mousepointer
             if(rainbowMode.checked && eraseMode.checked){ // if both rainbow and erase are checked returns to false
-                alert("No, don't do that, you are not funny.")
+                alert("No, don't do that, you are not funny leaving both rainbow and erase on.")
                 rainbowMode.checked = false;
                 eraseMode.checked = false;
             }
